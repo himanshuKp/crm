@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.himanshu.dao.CustomerDAO;
 import com.himanshu.entity.Customer;
+import com.himanshu.service.CustomerService;
 
 /**
  * @author root
@@ -18,15 +19,15 @@ import com.himanshu.entity.Customer;
 @RequestMapping("customer")
 public class CustomerController {
 
-//	need to inject the customer dao
+//	need to inject our customer service
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerService customerService;
 	
 	@RequestMapping("list")
 	public String listCustomers(Model theModel) {
 		
-//		get the customer from dao
-		List<Customer> theCustomers = customerDAO.getCustomers();
+//		get the customer from the service
+		List<Customer> theCustomers = customerService.getCustomers();
 		
 //		add the customer to the model
 		theModel.addAttribute("customers",theCustomers);
