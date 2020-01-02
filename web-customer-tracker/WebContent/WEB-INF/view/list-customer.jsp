@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>CRM</title>
-<link type="text/css"
-	rel="stylesheet"
+<link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/style.css"></link>
 </head>
 <body>
@@ -18,27 +17,33 @@
 		</div>
 	</div>
 
-	
-	
 	<div id="container">
 		<div id="content">
-		
-		<!-- put new button - add customer -->
-		<input type="button" value="Add customer" onclick="window.location.href='showFormForAdd'; return false;"
-		class = "add-button">
-		
-		
+
+			<!-- put new button - add customer -->
+			<input type="button" value="Add customer"
+				onclick="window.location.href='showFormForAdd'; return false;"
+				class="add-button">
+
 			<table>
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Email</th>
+					<th>Action</th>
 				</tr>
 				<c:forEach var="tempCustomer" items="${customers}">
+
+					<!-- create an update url with customer id -->
+					<c:url var="updateURL" value="/customer/showFormForUpdate">
+						<c:param name="customerId" value="${tempCustomer.id}" />
+					</c:url>
+
 					<tr>
 						<td>${tempCustomer.firstName}</td>
 						<td>${tempCustomer.lastName}</td>
 						<td>${tempCustomer.emailId}</td>
+						<td><a href="${updateURL}">Update</a></td>
 					</tr>
 				</c:forEach>
 			</table>
