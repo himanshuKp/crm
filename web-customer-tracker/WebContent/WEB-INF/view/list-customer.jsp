@@ -39,11 +39,17 @@
 						<c:param name="customerId" value="${tempCustomer.id}" />
 					</c:url>
 
+					<!-- create an delete url with customer id -->
+					<c:url var="deleteURL" value="/customer/deleteCustomer">
+						<c:param name="customerId" value="${tempCustomer.id}" />
+					</c:url>
+
 					<tr>
 						<td>${tempCustomer.firstName}</td>
 						<td>${tempCustomer.lastName}</td>
 						<td>${tempCustomer.emailId}</td>
-						<td><a href="${updateURL}">Update</a></td>
+						<td><a href="${updateURL}">Update</a>| <a href="${deleteURL}"
+							onclick="if(!(confirm('Are you sure you want to delete this customer?'))) return false">Delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
